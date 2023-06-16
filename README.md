@@ -1,4 +1,4 @@
-![PIO build status](https://github.com/IanBurwell/pyportal-clock/actions/workflows/pio.yml/badge.svg)
+![pio build](https://github.com/IanBurwell/pyportal-clock/actions/workflows/pio.yml/badge.svg)
 
 A project using a pyportal to create a useful bedside alarm clock
 

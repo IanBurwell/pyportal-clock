@@ -1,5 +1,5 @@
-#include "Scheduler.h"
 #include <Arduino.h>
+#include "scheduler.h"
 
 bool Scheduler::ScheduleFunc(const char* name, uint32_t period_ms, std::function<void()> func)
 {

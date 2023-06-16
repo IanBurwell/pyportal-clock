@@ -1,6 +1,6 @@
 #include <Arduino.h>
-#include <Scheduler.h>
-#include <Task.h>
+#include <scheduler.h>
+#include <task.h>
 #include <unity.h>
 
 
@@ -19,7 +19,7 @@ void test_schedule_func(){
     TEST_ASSERT_FALSE(sched.ScheduleFunc("TestFunction", 200, dummy_func));
     TEST_ASSERT_TRUE(sched.ScheduleFunc("ReTestFunction", 250, dummy_func));
     
-    TEST_ASSERT_TRUE(sched.GetNumberScheduledItems() == 2);
+    TEST_ASSERT_EQUAL_INT(2, sched.GetNumberScheduledItems());
 }
 
 
@@ -29,8 +29,8 @@ void test_schedule_task(){
     TEST_ASSERT_FALSE(sched.ScheduleTask("TestTask", 200, test_task));
     TEST_ASSERT_FALSE(sched.ScheduleTask("ReTestTask", 250, test_task));
     
-    TEST_ASSERT_TRUE(sched.GetNumberScheduledItems() == 3);
-    TEST_ASSERT_TRUE(task_init_calls == 1);
+    TEST_ASSERT_EQUAL_INT(3, sched.GetNumberScheduledItems());
+    TEST_ASSERT_EQUAL_INT(1, task_init_calls);
 }
 
 /// Tests running the scheduler
@@ -41,9 +41,9 @@ void test_scheduler_tick(){
         sched.Tick();
 
     // Test number of calls to scheduled function and task
-    TEST_ASSERT_TRUE(func_calls == 14);
-    TEST_ASSERT_TRUE(task_init_calls == 1);
-    TEST_ASSERT_TRUE(task_update_calls == 10);
+    TEST_ASSERT_EQUAL_INT(14, func_calls);
+    TEST_ASSERT_EQUAL_INT(1, task_init_calls);
+    TEST_ASSERT_EQUAL_INT(10, task_update_calls);
 }
 
 void setup(){
