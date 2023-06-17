@@ -3,14 +3,21 @@
 #else
 
 #include <Arduino.h>
+#include <scheduler.h>
+#include <statusled_task.h>
+
+Scheduler sched;
+StatusLEDTask led_task;
 
 void setup() {
-    pinMode(13, OUTPUT);
+    led_task.SetStatusLED(led_state::kSlowFlash);
+    led_task.SetRGBLED(color::kGreen);
+
+    sched.ScheduleTask("LEDTask", 0, led_task);
 }
 
 void loop() {
-    digitalWrite(13, !digitalRead(13));
-    delay(200);
+    sched.Tick();
 }
 
 #endif
