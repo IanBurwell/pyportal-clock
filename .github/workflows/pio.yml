@@ -1,4 +1,4 @@
-name: PlatformIO Build
+name: PlatformIO CI
 
 on: [push]
 
@@ -42,4 +42,4 @@ jobs:
         run: pip install --upgrade platformio
 
       - name: Test PlatformIO Native Target
-        run: pio test -e native
+        run: pio test -e native -vvv
