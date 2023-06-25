@@ -1,5 +1,5 @@
 #pragma once
-
+#include <functional>
 
 static constexpr const char* kLevelNames[] = {"ERROR", "WARN ", "INFO ", "DEBUG"};
 
@@ -16,7 +16,6 @@ public:
         kDebug   = 3
     };
     
-
     void Debug(const char* message){Log(message, LogLevel::kDebug);};
     void Info(const char* message){Log(message, LogLevel::kInfo);};
     void Warning(const char* message){Log(message, LogLevel::kWarning);};
@@ -24,9 +23,12 @@ public:
 
     void Log(const char* message, LogLevel level);
 
+    void AttachExternOutput(std::function<void(const char*)> callback_func);
+
 private:
     LogLevel log_level_ = LogLevel::kInfo;
     Logger() = default;
     ~Logger() = default;
+    std::function<void(const char*)> extern_output_;
 };
 
