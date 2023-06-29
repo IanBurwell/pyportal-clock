@@ -4,7 +4,7 @@
 
 void SDCardTask::Init(){
     // Init SD
-    if (!sd_.begin(SD_CS_PIN, SPI_HALF_SPEED)) {
+    if (!sd_.begin(SdSpiConfig(SD_CS_PIN, SHARED_SPI, SPI_HALF_SPEED))) {
         Logger::Instance().Error("SD card not initialized");
         initialized_ = false;
         return;
